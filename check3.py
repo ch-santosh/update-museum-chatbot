@@ -19,7 +19,30 @@ import webbrowser
 import threading
 import schedule
 import os
+# Check for required packages and install if missing
+import sys
+import subprocess
+import os
 
+def install_packages():
+    try:
+        import firebase_admin
+        import groq
+        import qrcode
+    except ImportError:
+        print("Installing missing packages...")
+        subprocess.check_call([sys.executable, "-m", "pip", "install", 
+                              "firebase-admin==6.2.0", 
+                              "groq==0.4.0", 
+                              "qrcode==7.4.2"])
+        print("Packages installed successfully!")
+
+# Try to install packages if they're missing
+try:
+    install_packages()
+except Exception as e:
+    st.error(f"Failed to install required packages: {e}")
+    st.info("Please contact support if this error persists.")
 # Set page config first to avoid warnings
 st.set_page_config(
     page_title="Athena Museum Booking Assistant",
