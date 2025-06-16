@@ -90,7 +90,7 @@ def init_groq():
         api_key = st.secrets.get("GROQ_API_KEY", "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")
         return Groq(api_key=api_key)
     except:
-        return Groq(api_key="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")
+        return Groq(api_key="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")
 
 # Initialize clients
 db = init_firebase()
